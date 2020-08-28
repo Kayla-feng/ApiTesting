@@ -19,8 +19,10 @@ class HttpPost(BaseApi):
 
 
 def test_http_get():
-    HttpGet().run().validate("status_code", 200)
+    HttpGet()\
+        .run()\
+        .validate("status_code", 200)
 
 
 def test_http_post():
-    HttpPost().run().validate("status_code", 200)
+    HttpPost().run().validate("status_code", 200).validate("headers.Server","gunicorn/19.9.0")
