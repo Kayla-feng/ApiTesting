@@ -4,8 +4,8 @@ class BaseApi:
     url = ""
     params = {}
     headers = {"accept":"application/json"}
-    json = {}
     data = {}
+    json = {}
     method = "GET"
 
     def param(self,**params):
@@ -22,10 +22,15 @@ class BaseApi:
                 self.url,
                 params=self.params,
                 headers=self.headers,
-                json=self.json,
-                data=self.data
+                data=self.data,
+                json=self.json
                      )
         return self
+
+    def extract(self,field):
+        value = getattr(self.response, field)
+        return value
+
 
     def validate(self,key,expected_value):
         value = self.response

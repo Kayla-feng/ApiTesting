@@ -1,21 +1,8 @@
-from apitest.api import BaseApi
+from apitest.httpbin import *
 
 # def test_version():
 #     from apitest import __version__
 #     assert isinstance(__version__,str)
-
-
-
-class HttpGet(BaseApi):
-
-    url = "http://www.httpbin.org/get"
-    method = "GET"
-
-
-class HttpPost(BaseApi):
-
-    url = "http://www.httpbin.org/post"
-    method = "post"
 
 
 def test_http_get():
@@ -30,3 +17,13 @@ def test_http_post():
         .validate("headers.Server","gunicorn/19.9.0")\
         .validate("json().url","http://www.httpbin.org/post")\
         .validate("json().headers.Host","www.httpbin.org")
+
+
+def test_httpbin_extract():
+    status_code = HttpGet()\
+        .run()\
+        .extract("status_code")
+    assert status_code == 200
+
+def test_httpbin_parameters_extract():
+     pass
