@@ -25,4 +25,8 @@ def test_http_get():
 
 
 def test_http_post():
-    HttpPost().run().validate("status_code", 200).validate("headers.Server","gunicorn/19.9.0")
+    HttpPost().run()\
+        .validate("status_code", 200)\
+        .validate("headers.Server","gunicorn/19.9.0")\
+        .validate("json().url","http://www.httpbin.org/post")\
+        .validate("json().headers.Host","www.httpbin.org")
