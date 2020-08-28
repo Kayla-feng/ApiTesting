@@ -6,7 +6,7 @@ class BaseApi:
     headers = {"accept":"application/json"}
     json = {}
     data = {}
-    method = "GET"
+    method = "GET/post"
 
     def param(self,**params):
         self.params = params
